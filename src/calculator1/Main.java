@@ -17,6 +17,30 @@ public class Main {
         System.out.print("사칙연산 기호(+,-,*,/)를 입력하세요: ");
         char operator = scanner.next().charAt(0);
 
-        System.out.println("test num1: " + num1 + ", num2: " + num2 + ", oper: " +operator);
+        // 연산을 진행한 후 결과값을 출력하기
+        int result = 0;
+
+        if (operator == '+') {
+            result = num1 + num2;
+        }
+        else if (operator == '-') {
+            result = num1 - num2;
+        }
+        else if (operator == '*') {
+            result = num1 * num2;
+        }
+        else if (operator == '/') {
+            if (num2 == 0) {
+                System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+            }
+            else {
+                result = num1 / num2;
+            }
+        }
+        else{
+            System.out.println("잘못된 연산 기호를 입력하셨습니다.");
+        }
+
+        System.out.println("결과: " + result);
     }
 }
