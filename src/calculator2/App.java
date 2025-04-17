@@ -21,32 +21,16 @@ public class App {
                 char operator = scanner.next().charAt(0);
 
                 // 연산을 진행한 후 결과값을 출력하기
-                int result = 0;
-
-                if (operator == '+') {
-                    result = calculator.add(num1, num2);
-                }
-                else if (operator == '-') {
-                    result = calculator.sub(num1, num2);
-                }
-                else if (operator == '*') {
-                    result = calculator.mul(num1, num2);
-                }
-                else if (operator == '/') {
-                    result = calculator.div(num1, num2);
-                }
-                else{
-                    throw new IllegalArgumentException("잘못된 연산 기호를 입력하셨습니다.");
-                }
+                int result = calculator.calculate(num1, num2, operator);
 
                 System.out.println("결과: " + result);
 
             }
             catch (ArithmeticException e) {
-                System.out.println("산술 예외: " + e.getMessage());
+                System.out.println("산술 예외: " + e.getMessage()); // 나눗셈의 분모가 0일 떄
             }
             catch (IllegalArgumentException e) {
-                System.out.println("잘못된 인자: " + e.getMessage());
+                System.out.println("잘못된 인자: " + e.getMessage()); // 사칙연산 기호가 아닐 때
             }
 
             // 반복의 종료 의사 확인

@@ -14,29 +14,26 @@ public class Calculator {
     }
 
     // 기능
-    public int add(int num1, int num2) {
-        int result = num1 + num2;
-        history.add(result);
-        return result;
-    }
-
-    public int sub(int num1, int num2) {
-        int result = num1 - num2;
-        history.add(result);
-        return result;
-    }
-
-    public int mul(int num1, int num2) {
-        int result = num1 * num2;
-        history.add(result);
-        return result;
-    }
-
-    public int div(int num1, int num2) {
-        if (num2 == 0) { // RuntimeException
-            throw new ArithmeticException("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+    public int calculate(int num1, int num2, char operator){
+        int result;
+        if (operator == '+') {
+            result = num1 + num2;
         }
-        int result = num1 / num2;
+        else if (operator == '-') {
+            result = num1 - num2;
+        }
+        else if (operator == '*') {
+            result = num1 * num2;
+        }
+        else if (operator == '/') {
+            if (num2 == 0) {
+                throw new ArithmeticException("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+            }
+            result = num1 / num2;
+        }
+        else{
+            throw new IllegalArgumentException("잘못된 연산 기호를 입력하셨습니다.");
+        }
         history.add(result);
         return result;
     }
