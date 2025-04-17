@@ -41,8 +41,12 @@ public class App {
 
                 System.out.println("결과: " + result);
 
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+            }
+            catch (ArithmeticException e) {
+                System.out.println("산술 예외: " + e.getMessage());
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println("잘못된 인자: " + e.getMessage());
             }
 
             // 반복의 종료 의사 확인
