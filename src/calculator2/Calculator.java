@@ -32,14 +32,12 @@ public class Calculator {
         return result;
     }
 
-    public int div(int num1, int num2) throws Exception {
-        if (num2 == 0) {
-            throw new Exception("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+    public int div(int num1, int num2) {
+        if (num2 == 0) { // RuntimeException
+            throw new ArithmeticException("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
         }
-        else {
-            int result = num1 / num2;
-            history.add(result);
-            return result;
-        }
+        int result = num1 / num2;
+        history.add(result);
+        return result;
     }
 }
