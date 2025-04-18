@@ -6,10 +6,10 @@ import java.util.ArrayList;
 public class Calculator {
     // 속성
     // 연산 결과를 저장하는 컬렉션 타입 필드
-    List<Integer> history;
+    private List<Integer> history;
 
     // 생성자
-    Calculator() {
+    public Calculator() {
         history = new ArrayList<>();
     }
 
@@ -36,5 +36,15 @@ public class Calculator {
         }
         history.add(result);
         return result;
+    }
+
+    // 게터
+    List<Integer> getHistory() {
+        return this.history;
+    }
+
+    // 세터
+    void setHistory(List<Integer> history) {
+        this.history = history;
     }
 }
