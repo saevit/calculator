@@ -6,11 +6,11 @@ import java.util.ArrayList;
 public class Calculator {
     // 속성
     // 연산 결과를 저장하는 컬렉션 타입 필드
-    private List<Integer> history;
+    private List<Integer> Result;
 
     // 생성자
     public Calculator() {
-        history = new ArrayList<>();
+        Result = new ArrayList<>();
     }
 
     // 기능
@@ -34,17 +34,23 @@ public class Calculator {
         else{
             throw new IllegalArgumentException("잘못된 연산 기호를 입력하셨습니다.");
         }
-        history.add(result);
+        Result.add(result); // 연산 기록 저장
         return result;
     }
 
     // 게터
-    List<Integer> getHistory() {
-        return this.history;
+    List<Integer> getResult() {
+        return this.Result;
     }
 
     // 세터
-    void setHistory(List<Integer> history) {
-        this.history = history;
+    void setResult(List<Integer> result) {
+        this.Result = result;
     }
+
+    // 가장 먼저 저장된 연산 기록을 삭제하는 기능
+    public void removeResult() {
+        this.Result.remove(0);
+    }
+
 }

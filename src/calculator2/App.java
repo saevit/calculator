@@ -1,10 +1,8 @@
 package calculator2;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class App {
     public static void main(String[] args) {
@@ -37,7 +35,7 @@ public class App {
             }
 
             // 히스토리(연산 결과) 가져오기
-            System.out.println("연산 기록: " + calculator.getHistory());
+            System.out.println("연산 기록: " + calculator.getResult());
 
             // 히스토리 수정하기
             scanner.nextLine(); // next() 후 버퍼에 남은 개행 제거를 위해
@@ -46,20 +44,37 @@ public class App {
             String editInput = scanner.nextLine();
 
             if (editInput.equals("yes")){
-                System.out.println("교체할 연산 기록을 작성하십이오. (공백으로 구분)");
-                String editNum = scanner.nextLine();
+                System.out.println("어떤 수정을 진행하시겠습니까? (숫자를 입력해주세요)");
+                System.out.println("1: 연산 기록 전체 수정  2: 첫번째 연산 기록 삭제");
+                int editChoice = scanner.nextInt();
 
-                // 입력 된 문자열 List형태로 만들기
-                String[] split = editNum.split(" ");  // 문자열 공백 기준으로 자르기
-                List<Integer> newHistory = new ArrayList<>();
-                for (String s : split) {
-                    newHistory.add(Integer.valueOf(s)); // 자른 문자열 숫자로 변형
+                scanner.nextLine(); // next() 후 버퍼에 남은 개행 제거를 위해
+
+                if (editChoice == 1) {
+                    // 1: 연산 기록 전체 수정
+                    // 교체할 연산기록 입력
+                    System.out.println("교체할 연산 기록을 작성하십이오. (공백으로 구분)");
+                    String editNum = scanner.nextLine();
+
+                    // 입력 된 문자열 List형태로 만들기
+                    String[] split = editNum.split(" ");  // 문자열 공백 기준으로 자르기
+                    List<Integer> newResult = new ArrayList<>();
+                    for (String s : split) {
+                        newResult.add(Integer.valueOf(s)); // 자른 문자열 숫자로 변형
+                    }
+
+                    // 연산 기록 새롭게 수정 및 결과 출력
+                    calculator.setResult(newResult);
+                    System.out.println("수정된 연산 기록: " + calculator.getResult());
                 }
-
-                // 히스토리 새롭게 수정 및 결과 출력
-                calculator.setHistory(newHistory);
-                System.out.println("수정된 연산 기록: " + calculator.getHistory());
-
+                else if (editChoice == 2){
+                    // 2: 첫번째 연산 기록 삭제
+                    calculator.removeResult();
+                    System.out.println("수정된 연산 기록: " + calculator.getResult());
+                }
+                else {
+                    System.out.println("존재하지 않는 옵션입니다.");
+                }
             }
 
             // 반복의 종료 의사 확인
