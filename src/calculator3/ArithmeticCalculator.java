@@ -3,15 +3,13 @@ package calculator3;
 import java.util.ArrayList;
 import java.util.List;
 
-import calculator3.OperatorType;
-
-public class Calculator {
+public class ArithmeticCalculator {
     // 속성
     // 연산 결과를 저장하는 컬렉션 타입 필드
     private List<Integer> Result;
 
     // 생성자
-    public Calculator() {
+    public ArithmeticCalculator() {
         Result = new ArrayList<>();
     }
 

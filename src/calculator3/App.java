@@ -1,7 +1,5 @@
 package calculator3;
 
-import calculator3.Calculator;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,7 +7,7 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Calculator calculator = new Calculator();
+        ArithmeticCalculator calculator = new ArithmeticCalculator();
 
         while (true) {
             try {
