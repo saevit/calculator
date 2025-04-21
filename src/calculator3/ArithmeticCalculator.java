@@ -14,26 +14,29 @@ public class ArithmeticCalculator {
     }
 
     // 기능
-    public int calculate(int num1, int num2, char operator){
-        int result;
-        if (operator == OperatorType.ADD.getSymbol()) {
-            result = num1 + num2;
+    public int calculate(int num1, int num2, char inputOerator){
+        int result = 0;
+
+        OperatorType operator = OperatorType.chartoSymbol(inputOerator);
+
+        switch (operator){
+            case ADD:
+                result = num1 + num2;
+                break;
+            case SUB:
+                result = num1 - num2;
+                break;
+            case MUL:
+                result = num1 * num2;
+                break;
+            case DIV:
+                if (num2 == 0) {
+                    throw new ArithmeticException("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+                }
+                result = num1 / num2;
+                break;
         }
-        else if (operator == OperatorType.SUB.getSymbol()) {
-            result = num1 - num2;
-        }
-        else if (operator == OperatorType.MUL.getSymbol()) {
-            result = num1 * num2;
-        }
-        else if (operator == OperatorType.DIV.getSymbol()) {
-            if (num2 == 0) {
-                throw new ArithmeticException("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
-            }
-            result = num1 / num2;
-        }
-        else{
-            throw new IllegalArgumentException("잘못된 연산 기호를 입력하셨습니다.");
-        }
+
         Result.add(result); // 연산 기록 저장
         return result;
     }
