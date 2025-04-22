@@ -13,19 +13,27 @@ public class App {
             try {
                 // 양의 정수(0 포함)를 입력받기
                 System.out.print("첫 번째 숫자를 입력하세요: ");
-                int num1 = scanner.nextInt();
+                String input1 = scanner.next();
 
                 System.out.print("두 번째 숫자를 입력하세요: ");
-                int num2 = scanner.nextInt();
+                String input2 = scanner.next();
 
                 // 사칙연산 기호(+,-,*,/)를 입력받기
                 System.out.print("사칙연산 기호(+,-,*,/)를 입력하세요: ");
                 char operator = scanner.next().charAt(0);
 
-                // 연산을 진행한 후 결과값을 출력하기
-                int result = calculator.calculate(num1, num2, operator);
-
-                System.out.println("결과: " + result);
+                // 연산을 진행한 후 결과값을 출력하기 (정수 or 실수 연산 모두 가능)
+                if (input1.contains(".") || input2.contains(".")) {
+                    double num1 = Double.parseDouble(input1);
+                    double num2 = Double.parseDouble(input2);
+                    Number result = calculator.calculate(num1, num2, operator);
+                    System.out.println("실수 연산 결과: " + result);
+                } else {
+                    int num1 = Integer.parseInt(input1);
+                    int num2 = Integer.parseInt(input2);;
+                    Number result = calculator.calculate(num1, num2, operator);
+                    System.out.println("정수 연산 결과: " + result);
+                }
             }
             catch (ArithmeticException e) {
                 System.out.println("산술 예외: " + e.getMessage()); // 나눗셈의 분모가 0일 떄

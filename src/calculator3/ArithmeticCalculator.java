@@ -3,10 +3,10 @@ package calculator3;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArithmeticCalculator {
+public class ArithmeticCalculator<T extends Number> {
     // 속성
     // 연산 결과를 저장하는 컬렉션 타입 필드
-    private List<Integer> Result;
+    private List<T> Result;
 
     // 생성자
     public ArithmeticCalculator() {
@@ -14,40 +14,46 @@ public class ArithmeticCalculator {
     }
 
     // 기능
-    public int calculate(int num1, int num2, char inputOerator){
-        int result = 0;
+    public T calculate(T num1, T num2, char inputOerator){
+        T result;
 
         OperatorType operator = OperatorType.chartoSymbol(inputOerator);
 
-        switch (operator){
+        // num 값과 결과를 담을 result double로 준비
+        double doubleNum1 = num1.doubleValue();
+        double doubleNum2 = num2.doubleValue();
+        double doubleResult = 0;
+
+        switch (operator) {
             case ADD:
-                result = num1 + num2;
+                doubleResult = doubleNum1 + doubleNum2;
                 break;
             case SUB:
-                result = num1 - num2;
+                doubleResult = doubleNum1 - doubleNum2;
                 break;
             case MUL:
-                result = num1 * num2;
+                doubleResult = doubleNum1 * doubleNum2;
                 break;
             case DIV:
-                if (num2 == 0) {
+                if (doubleNum2 == 0) {
                     throw new ArithmeticException("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
                 }
-                result = num1 / num2;
+                doubleResult = doubleNum1 / doubleNum2;
                 break;
         }
 
+        result = (T) Double.valueOf(doubleResult);
         Result.add(result); // 연산 기록 저장
         return result;
     }
 
     // 게터
-    List<Integer> getResult() {
+    List<T> getResult() {
         return this.Result;
     }
 
     // 세터
-    void setResult(List<Integer> result) {
+    void setResult(List<T> result) {
         this.Result = result;
     }
 
@@ -55,5 +61,4 @@ public class ArithmeticCalculator {
     public void removeResult() {
         this.Result.remove(0);
     }
-
 }
