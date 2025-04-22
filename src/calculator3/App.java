@@ -25,12 +25,16 @@ public class App {
                 // 연산을 진행한 후 결과값을 출력하기 (정수 or 실수 연산 모두 가능)
                 if (input1.contains(".") || input2.contains(".")) {
                     double num1 = Double.parseDouble(input1);
+                    calculator.printGreaterResult(num1);
                     double num2 = Double.parseDouble(input2);
+                    calculator.printGreaterResult(num2);
                     Number result = calculator.calculate(num1, num2, operator);
                     System.out.println("실수 연산 결과: " + result);
                 } else {
                     int num1 = Integer.parseInt(input1);
+                    calculator.printGreaterResult(num1);
                     int num2 = Integer.parseInt(input2);;
+                    calculator.printGreaterResult(num2);
                     Number result = calculator.calculate(num1, num2, operator);
                     System.out.println("정수 연산 결과: " + result);
                 }

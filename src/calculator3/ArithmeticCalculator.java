@@ -2,6 +2,7 @@ package calculator3;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ArithmeticCalculator<T extends Number> {
     // 속성
@@ -60,5 +61,14 @@ public class ArithmeticCalculator<T extends Number> {
     // 가장 먼저 저장된 연산 기록을 삭제하는 기능
     public void removeResult() {
         this.Result.remove(0);
+    }
+
+    // 입력값 보다 큰 연산 기록을 출력하는 기능
+    void printGreaterResult(T num) {
+        List<T> ret = Result.stream()
+                .filter(i -> i.doubleValue() > num.doubleValue())
+                .collect(Collectors.toList());
+
+        System.out.println(ret);
     }
 }
