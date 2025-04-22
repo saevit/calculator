@@ -64,11 +64,11 @@ public class ArithmeticCalculator<T extends Number> {
     }
 
     // 입력값 보다 큰 연산 기록을 출력하는 기능
-    void printGreaterResult(T num) {
+    List<T> getGreaterResult(T num) {
         List<T> ret = Result.stream()
                 .filter(i -> i.doubleValue() > num.doubleValue())
                 .collect(Collectors.toList());
 
-        System.out.println(ret);
+        return ret;
     }
 }

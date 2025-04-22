@@ -25,16 +25,12 @@ public class App {
                 // 연산을 진행한 후 결과값을 출력하기 (정수 or 실수 연산 모두 가능)
                 if (input1.contains(".") || input2.contains(".")) {
                     double num1 = Double.parseDouble(input1);
-                    calculator.printGreaterResult(num1);
                     double num2 = Double.parseDouble(input2);
-                    calculator.printGreaterResult(num2);
                     Number result = calculator.calculate(num1, num2, operator);
                     System.out.println("실수 연산 결과: " + result);
                 } else {
                     int num1 = Integer.parseInt(input1);
-                    calculator.printGreaterResult(num1);
                     int num2 = Integer.parseInt(input2);;
-                    calculator.printGreaterResult(num2);
                     Number result = calculator.calculate(num1, num2, operator);
                     System.out.println("정수 연산 결과: " + result);
                 }
@@ -50,20 +46,28 @@ public class App {
             System.out.println("연산 기록: " + calculator.getResult());
 
             // 히스토리 수정하기
+            System.out.println("연산 기록을 조회 및 수정하시겠습니까? (숫자를 입력해주세요) ");
+            System.out.println("1: 더 큰 연산 기록 찾기");
+            System.out.println("2: 연산 기록 전체 수정");
+            System.out.println("3: 첫번째 연산 기록 삭제");
+            System.out.println("그 외: 다음으로");
+            int editChoice = scanner.nextInt();
+
             scanner.nextLine(); // next() 후 버퍼에 남은 개행 제거를 위해
 
-            System.out.println("연산 기록을 수정하시겠습니까? (yes 입력 시 수정) ");
-            String editInput = scanner.nextLine();
+            switch (editChoice){
+                case 1:
+                    // 1: 더 큰 연산 기록 찾기
+                    System.out.println("몇 보다 더 큰 연산 기록을 출력할까요?");
+                    int num = scanner.nextInt();
 
-            if (editInput.equals("yes")){
-                System.out.println("어떤 수정을 진행하시겠습니까? (숫자를 입력해주세요)");
-                System.out.println("1: 연산 기록 전체 수정  2: 첫번째 연산 기록 삭제");
-                int editChoice = scanner.nextInt();
+                    scanner.nextLine(); // next() 후 버퍼에 남은 개행 제거를 위해
 
-                scanner.nextLine(); // next() 후 버퍼에 남은 개행 제거를 위해
-
-                if (editChoice == 1) {
-                    // 1: 연산 기록 전체 수정
+                    List<Number> ret = calculator.getGreaterResult(num);
+                    System.out.println(num + "보다 큰 연산 결과: " + ret);
+                    break;
+                case 2:
+                    // 2: 연산 기록 전체 수정
                     // 교체할 연산기록 입력
                     System.out.println("교체할 연산 기록을 작성하십이오. (공백으로 구분)");
                     String editNum = scanner.nextLine();
@@ -78,15 +82,13 @@ public class App {
                     // 연산 기록 새롭게 수정 및 결과 출력
                     calculator.setResult(newResult);
                     System.out.println("수정된 연산 기록: " + calculator.getResult());
-                }
-                else if (editChoice == 2){
-                    // 2: 첫번째 연산 기록 삭제
+                    break;
+                case 3:
+                    // 3: 첫번째 연산 기록 삭제
                     calculator.removeResult();
                     System.out.println("수정된 연산 기록: " + calculator.getResult());
-                }
-                else {
-                    System.out.println("존재하지 않는 옵션입니다.");
-                }
+                    break;
+                //default:
             }
 
             // 반복의 종료 의사 확인
